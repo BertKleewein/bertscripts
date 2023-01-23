@@ -112,21 +112,23 @@ alias pt=pytest
 export PYTHONUNBUFFERED=1
 export PYTHONASYNCIODEBUG=1
 
-export PATH="${HOME}/.pyenv/bin:${PATH}"
-eval "$(pyenv init -)"
-eval "$(pyenv init --path)"
+if (which pyenv > /dev/null); then
+    export PATH="${HOME}/.pyenv/bin:${PATH}"
+    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
 
-for ((major=3;major>=2;major--)); do
-    for ((minor=19;minor>=1;minor--)); do
-        for ((patch=19;patch>=1;patch--)); do
-            if [ -f ~/env/Python-${major}.${minor}.${patch}/bin/activate ]; then
-                echo Using py${major}${minor} = ${major}.${minor}.${patch}
-                alias py${major}${minor}="source ~/env/Python-${major}.${minor}.${patch}/bin/activate"
-                break
-            fi
+    for ((major=3;major>=2;major--)); do
+        for ((minor=19;minor>=1;minor--)); do
+            for ((patch=19;patch>=1;patch--)); do
+                if [ -f ~/env/Python-${major}.${minor}.${patch}/bin/activate ]; then
+                    echo Using py${major}${minor} = ${major}.${minor}.${patch}
+                    alias py${major}${minor}="source ~/env/Python-${major}.${minor}.${patch}/bin/activate"
+                    break
+                fi
+            done
         done
     done
-done
+fi
 
 ###################################################################################################
 # nmap

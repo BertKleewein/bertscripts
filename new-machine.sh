@@ -28,7 +28,7 @@ echo "User ${USER} added to sudoers.  Use 'sudo visudo' to verify."
 
 cp ${script_dir}/vimrc ~/.vimrc
 cp ${script_dir}/tmux.conf ~/.tmux.conf
-cp ${script_dir}/bash_aliases ~/.bash_alises
+cp ${script_dir}/bash_aliases ~/.bash_aliases
 
 echo "success"
 
