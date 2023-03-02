@@ -76,7 +76,13 @@ clear-docker-logs() {
 }
 
 docker-restart() {
-    clear-docker-logs && docker restart $1 && dlf $1
+    clear-docker-logs && docker restart $1 && docker logs -f $1
+}
+
+docker-save-log() {
+    dest = ~/temp/$1.txt
+    docker logs $1 &> $dest
+    echo Log saved to $dest
 }
 
 docker-bash() {
