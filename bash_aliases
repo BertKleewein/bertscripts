@@ -80,7 +80,7 @@ docker-restart() {
 }
 
 docker-save-log() {
-    dest = ~/temp/$1.txt
+    dest=~/temp/$1.txt
     docker logs $1 &> $dest
     echo Log saved to $dest
 }
