@@ -93,6 +93,11 @@ docker-sh() {
     docker exec -it $1 /bin/sh
 }
 
+alias dr=docker-restart
+alias dsl=docker-save-log
+alias dbash=docker-bash
+alias dsh=docker-sh
+
 ###################################################################################################
 # VIM
 ###################################################################################################
@@ -169,4 +174,5 @@ goproj() {
 }
 
 py37
+
 
