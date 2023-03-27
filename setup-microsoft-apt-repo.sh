@@ -14,9 +14,13 @@ fi
 # Download the Microsoft repository GPG keys
 case $ID in
     linuxmint)
-        if [[ $VERSION_ID == "19.3" ]];
-        then
+        IFS='.'; VID=($VERSION_ID); unset IFS;
+        if [ ${VID[0]} == "19" ]; then
             os_platform="ubuntu/18.04/multiarch"
+        elif [ ${VID[0]} == "20" ]; then
+            os_platform="ubuntu/20.04"
+        elif [ ${VID[0]} == "21" ]; then
+            os_platform="ubuntu/22.04"
         fi
         ;;
     ubuntu)
@@ -39,7 +43,7 @@ case $ID in
 esac
 
 if [ "${os_platform}" == "" ]; then
-  echo "ERROR: This script only works on Ubunto and Raspbian distros"
+  echo "ERROR: This script only works on Ubuntu and Raspbian distros"
   exit 1
 fi
 

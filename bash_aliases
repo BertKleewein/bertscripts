@@ -2,6 +2,17 @@
 # BASH
 ###################################################################################################
 
+# Add to path
+if [ -f "${HOME}/.pyenv/bin/pyenv" ]; then
+    echo "Adding pyenv to path"
+    export PATH="${HOME}/.pyenv/bin:${PATH}"
+fi
+if [ -e "${HOME}/.cargo/bin" ]; then
+    echo "Adding cargo-built binaries to path"
+    export PATH="${HOME}/.cargo/bin:${PATH}"
+fi
+
+
 
 # bashrc tricks: https://news.ycombinator.com/item?id=18898523
 # add z: https://github.com/rupa/z
@@ -173,6 +184,49 @@ goproj() {
     fi
 }
 
-py37
+make_activate_file() {
+name=$1
+ROOT="${HOME}/projects/${name}"
+F=${ROOT}/activate
 
+cat <<EOF >${F}
+    source ${ROOT}/env/bin/activate
+    alias proj="cd ${ROOT}"
+    if [ -d ${ROOT}/python ]; then 
+        alias cdp="cd ${ROOT}/python"
+    fi 
+    if [ -d ${ROOT}/azure-iot-sdk-python ]; then 
+        alias cdp="cd ${ROOT}/azure-iot-sdk-python"
+    fi 
+    if [ -d ${ROOT}/node ]; then 
+        alias cdn="cd ${ROOT}/node"
+    fi 
+    if [ -d ${ROOT}/azure-iot-sdk-node ]; then 
+        alias cdn="cd ${ROOT}/azure-iot-sdk-node"
+    fi 
+EOF
+}
+
+
+makeproj() {
+    set -x
+    name=$1
+    if [ -f "$HOME/projects/${name}/activate" ]; then
+        echo "Project ${name} already exists"
+    else
+        echo "Making ${name}" &&
+        (mkdir -p "$HOME/projects/${name}" || true) &&
+        cd "$HOME/projects/${name}"  &&
+        python -m virtualenv env --prompt "${name}"  &&
+        make_activate_file $name &&
+        source ./activate &&
+        echo "success"
+    fi
+    set +x
+}
+
+
+if [ -f "${HOME}/repos/dotfiles/setenv.sh" ]; then
+    source "${HOME}/repos/dotfiles/setenv.sh"
+fi
 
