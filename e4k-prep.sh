@@ -34,6 +34,13 @@ if [ "$x" == "" ]; then
     export PATH="${HOME}/bin:${PATH}"
 fi
 
+if [ ! -f ~/.kube/config ]; then
+    export KUBECONFIG=~/.kube/config
+    mkdir ~/.kube 2> /dev/null
+    sudo k3s kubectl config view --raw > "$KUBECONFIG"
+    chmod 600 "$KUBECONFIG"
+fi
+
 set +x
 echo -------
 echo SUCCESS

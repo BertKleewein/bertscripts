@@ -234,3 +234,8 @@ if [ -f "${HOME}/repos/dotfiles/setenv.sh" ]; then
     source "${HOME}/repos/dotfiles/setenv.sh"
 fi
 
+if [ -f ~/.kube/config ]; then
+    export KUBECONFIG=~/.kube/config
+    echo setting KUBECONFIG to ${KUBECONFIG}
+fi
+
