@@ -11,6 +11,10 @@ if [ -e "${HOME}/.cargo/bin" ]; then
     echo "Adding cargo-built binaries to path"
     export PATH="${HOME}/.cargo/bin:${PATH}"
 fi
+if [ -d "${HOME}/bin" ]; then
+    echo "Adding ~/bin binaries to path"
+    export PATH="${HOME}/bin:${PATH}"
+fi
 
 
 
