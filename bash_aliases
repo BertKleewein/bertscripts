@@ -109,7 +109,7 @@ docker-sh() {
 }
 
 docker-prune() {
-    sudo docker rm $(docker ps -a -f status=exited -q)                                                  
+    sudo docker rm $(docker ps -a -f status=exited -q)
     sudo docker rm $(docker ps -a -f status=created -q)
     sudo docker image prune -a -f
 }
@@ -127,7 +127,7 @@ alias dsh=docker-sh
 vimf() {
     vim +find\ **/$1
 }
-    
+
 
 
 ###################################################################################################
@@ -202,18 +202,18 @@ F=${ROOT}/activate
 cat <<EOF >${F}
     source ${ROOT}/env/bin/activate
     alias proj="cd ${ROOT}"
-    if [ -d ${ROOT}/python ]; then 
+    if [ -d ${ROOT}/python ]; then
         alias cdp="cd ${ROOT}/python"
-    fi 
-    if [ -d ${ROOT}/azure-iot-sdk-python ]; then 
+    fi
+    if [ -d ${ROOT}/azure-iot-sdk-python ]; then
         alias cdp="cd ${ROOT}/azure-iot-sdk-python"
-    fi 
-    if [ -d ${ROOT}/node ]; then 
+    fi
+    if [ -d ${ROOT}/node ]; then
         alias cdn="cd ${ROOT}/node"
-    fi 
-    if [ -d ${ROOT}/azure-iot-sdk-node ]; then 
+    fi
+    if [ -d ${ROOT}/azure-iot-sdk-node ]; then
         alias cdn="cd ${ROOT}/azure-iot-sdk-node"
-    fi 
+    fi
 EOF
 }
 

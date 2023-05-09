@@ -3,7 +3,7 @@ trap 'echo ERROR on line ${LINENO}' ERR
 
 script_dir=$(cd "$(dirname "$0")" && pwd)
 
-sudo apt update 
+sudo apt update
 sudo apt install -y \
     vim \
     tmux \
@@ -11,7 +11,7 @@ sudo apt install -y \
     net-tools \
     curl
 
-mkdir -p ~/bin 
+mkdir -p ~/bin
 curl https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh && chmod +x ~/bin/z.sh
 
 mkdir -p ~/.vim/backup

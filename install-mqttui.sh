@@ -8,7 +8,7 @@ if [ "$x" == "" ]; then
 fi
 
 if [ ! -d ~/repos/mqttui ]; then
-    mkdir -p ~/repos/mqttui 
+    mkdir -p ~/repos/mqttui
     cd ~/repos/mqttui
     git clone https://github.com/EdJoPaTo/mqttui .
 fi

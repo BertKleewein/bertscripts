@@ -34,7 +34,7 @@ function build_failure_help {
     echo "If you're getting an error: ERROR: The Python ssl extension was not compiled. Missing the OpenSSL lib?"
     echo "You MAY need to switch out OpenSSL 1.1.x with OpenSSL 1.0."
     echo "BUT,  doing this will break NPM and other tools that depend on OpenSSL 1.1.x, so BE VERY CAREFUL"
-    echo 
+    echo
     echo "sudo apt install libssl1.0-dev"
     echo
     echo "Or, to learn more, read the following:"
