@@ -108,6 +108,12 @@ docker-sh() {
     docker exec -it $1 /bin/sh
 }
 
+docker-prune() {
+    sudo docker rm $(docker ps -a -f status=exited -q)                                                  
+    sudo docker rm $(docker ps -a -f status=created -q)
+    sudo docker image prune -a -f
+}
+
 alias dr=docker-restart
 alias dsl=docker-save-log
 alias dbash=docker-bash
@@ -229,6 +235,10 @@ makeproj() {
     set +x
 }
 
+list_subs() {
+    az account list --output=table --query="[].{CNname: name, Id: id}"
+}
+
 
 if [ -f "${HOME}/repos/dotfiles/setenv.sh" ]; then
     source "${HOME}/repos/dotfiles/setenv.sh"
@@ -239,3 +249,25 @@ if [ -f ~/.kube/config ]; then
     echo setting KUBECONFIG to ${KUBECONFIG}
 fi
 
+if [ -d ${HOME}/.pyenv/bin ]; then
+    export PATH="${HOME}/.pyenv/bin:${PATH}"
+    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+remove-trailing-whitespace() {
+    while [ "$1" != "" ]; do
+        echo processing $1
+        t=mketmp
+        sed -e "s/ \{1,\}$//" < $1 > $t
+        if [ $? -eq 0 ]; then
+            cp $t $1
+            rm $t
+        else
+            echo "Failure removing spaces from $1 (temp_file=$t)"
+            exit 1;
+        fi
+        shift
+    done
+}
