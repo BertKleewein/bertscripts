@@ -55,24 +55,15 @@ alias root='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-
 alias g=git
 alias ga='git add $(git rev-parse --show-toplevel)'
 alias gap='ga && pre-commit'
-alias gapt='gap && python -u -m pytest'
-alias gaptx='gapt -x'
-alias gs='git status'
-alias gc='git checkout'
-alias gcp='git checkpoint'
-alias grh='git reset HEAD'
+alias gcp='git commit -am "checkpoint"'
 alias gd='git diff'
 alias gdt='git difftool -y'
-alias gm='git merge'
-alias gf='git fetch'
-alias gp='git push'
-alias gfu='git fetch upstream'
-alias gfo='git fetch origin'
-alias gl='git log'
-alias gb='git branch'
 alias gcm='git commit -m'
 alias gcam='git commit -am'
 alias gdtm='git difftool -y $(git merge-base HEAD master)'
+function gcamp (
+    git commit -am "$*" && git push
+)
 
 
 ###################################################################################################
