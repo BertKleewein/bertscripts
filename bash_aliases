@@ -61,9 +61,10 @@ alias gdt='git difftool -y'
 alias gcm='git commit -m'
 alias gcam='git commit -am'
 alias gdtm='git difftool -y $(git merge-base HEAD master)'
-function gcamp (
+
+gcamp() {
     git commit -am "$*" && git push
-)
+}
 
 
 ###################################################################################################
@@ -262,3 +263,6 @@ remove-trailing-whitespace() {
         shift
     done
 }
+
+alias findempty="find . -type d -empty -print"
+alias nukeempty="find . -type d -empty -delete"
