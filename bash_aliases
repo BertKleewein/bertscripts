@@ -266,3 +266,4 @@ remove-trailing-whitespace() {
 
 alias findempty="find . -type d -empty -print"
 alias nukeempty="find . -type d -empty -delete"
+alias fix-wsl-time="sudo hwclock -s"
