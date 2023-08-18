@@ -4,7 +4,7 @@ trap 'echo ERROR on line ${LINENO}' ERR
 
 x=$(which cargo || true)
 if [ "$x" == "" ]; then
-    sudo apt install cargo
+    ./install-rust.sh
 fi
 
 if [ ! -d ~/repos/mqttui ]; then
