@@ -10,6 +10,7 @@ sudo apt install -y \
     openssh-server \
     net-tools \
     curl \
+    jq \
     python3 \
     python3-pip \
     python-is-python3
