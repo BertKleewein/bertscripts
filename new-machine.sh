@@ -9,7 +9,14 @@ sudo apt install -y \
     tmux \
     openssh-server \
     net-tools \
-    curl
+    curl \
+    python3 \
+    python3-pip \
+    python-is-python3
+
+pip install --upgrade pip
+pip install virtualenv
+
 
 mkdir -p ~/bin
 curl https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh && chmod +x ~/bin/z.sh

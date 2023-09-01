@@ -4,7 +4,8 @@ trap 'echo ERROR on line ${LINENO}' ERR
 
 x=$(which cargo || true)
 if [ "$x" == "" ]; then
-    ./install-rust.sh
+    echo Rust is not installed.  Please run ./install_rust.sh or restart your shell.
+    exit 1
 fi
 
 if [ ! -d ~/repos/mqttui ]; then
