@@ -7,6 +7,10 @@ if [ -f "${HOME}/.pyenv/bin/pyenv" ]; then
     echo "Adding pyenv to path"
     export PATH="${HOME}/.pyenv/bin:${PATH}"
 fi
+if [ -e "${HOME}/go/bin" ]; then
+    echo "Adding go binaries to path"
+    export PATH="${HOME}/go/bin:${PATH}"
+fi
 if [ -e "${HOME}/.cargo/bin" ]; then
     echo "Adding cargo-built binaries to path"
     export PATH="${HOME}/.cargo/bin:${PATH}"
