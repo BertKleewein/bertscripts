@@ -230,6 +230,7 @@ makeproj() {
     fi
     set +x
 }
+export -f makeproj
 
 list_subs() {
     az account list --output=table --query="[].{CNname: name, Id: id}"
