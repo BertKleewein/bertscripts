@@ -1,0 +1,4 @@
+alias nmap-all='nmap -p1-65535'
+alias nmap-os='sudo nmap -Pn -O'
+alias nmap-open='nmap -Pn -sV'
+alias nmap-scripts='nmap -Pn -sC'

@@ -1,0 +1,32 @@
+# .. to go up
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# This lets you easily search your command history by typing the beginning of a command and pressing the up arrow.
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+remove-trailing-whitespace() {
+    while [ "$1" != "" ]; do
+        echo processing $1
+        t=mketmp
+        sed -e "s/ \{1,\}$//" < $1 > $t
+        if [ $? -eq 0 ]; then
+            cp $t $1
+            rm $t
+        else
+            echo "Failure removing spaces from $1 (temp_file=$t)"
+            exit 1;
+        fi
+        shift
+    done
+}
+export -f remove-trailing-whitespaces
+
+alias findempty="find . -type d -empty -print"
+alias nukeempty="find . -type d -empty -delete"
+
+alias fix-wsl-time="sudo hwclock -s"
+

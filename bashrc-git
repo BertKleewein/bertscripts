@@ -1,0 +1,32 @@
+
+ps -x | grep -v grep | grep ssh-agent > /dev/null
+if [ $? -ne 0 ]; then
+  echo "Agent not running.  Starting"
+  eval $(ssh-agent -s)
+fi
+
+# Sometimes I forget the name of git branches I've worked on lately. This displays them with dates, most recent at the bottom:
+git_branch_dates() {
+    git for-each-ref --sort=authordate --format '%(authordate:iso) %(align:left,25)%(refname:short)%(end) %(subject)' refs/heads
+}
+export -f git_branch_dates
+
+# CD to the root of the current git project
+alias root='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-toplevel` || echo "Not in git repo"'
+
+alias g=git
+alias ga='git add $(git rev-parse --show-toplevel)'
+alias gap='ga && pre-commit'
+alias gcp='git commit -am "checkpoint"'
+alias gd='git diff'
+alias gdt='git difftool -y'
+alias gcm='git commit -m'
+alias gcam='git commit -am'
+alias gdtm='git difftool -y $(git merge-base HEAD master)'
+
+gcamp() {
+    git commit -am "$*" && git push
+}
+export -f gcamp
+
+

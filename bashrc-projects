@@ -1,0 +1,55 @@
+
+goproj() {
+    name=$1
+    if [ "$name" == "" ]; then
+        echo usage: goproj [name]
+    else
+        cd ~/projects/${name} && \
+            clear && \
+           source ./activate
+    fi
+}
+
+make_activate_file() {
+name=$1
+ROOT="${HOME}/projects/${name}"
+F=${ROOT}/activate
+
+cat <<EOF >${F}
+    source ${ROOT}/env/bin/activate
+    alias proj="cd ${ROOT}"
+    if [ -d ${ROOT}/python ]; then
+        alias cdp="cd ${ROOT}/python"
+    fi
+    if [ -d ${ROOT}/azure-iot-sdk-python ]; then
+        alias cdp="cd ${ROOT}/azure-iot-sdk-python"
+    fi
+    if [ -d ${ROOT}/node ]; then
+        alias cdn="cd ${ROOT}/node"
+    fi
+    if [ -d ${ROOT}/azure-iot-sdk-node ]; then
+        alias cdn="cd ${ROOT}/azure-iot-sdk-node"
+    fi
+EOF
+}
+
+
+makeproj() {
+    name=$1
+    if [ -f "$HOME/projects/${name}/activate" ]; then
+        echo "Project ${name} already exists"
+    else
+        echo "Making ${name}" &&
+        (mkdir -p "$HOME/projects/${name}" || true) &&
+        cd "$HOME/projects/${name}"  &&
+        python -m virtualenv env --prompt "${name}"  &&
+        make_activate_file $name &&
+        source ./activate &&
+        echo "success"
+    fi
+}
+
+export -f makeprof
+export -f goproj
+export -f make_activate_file
+

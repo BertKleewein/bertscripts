@@ -1,4 +1,4 @@
-set -exuo pipefail
+set -euo pipefail
 trap 'echo ERROR on line ${LINENO}' ERR
 
 CLUSTER_IP=$1

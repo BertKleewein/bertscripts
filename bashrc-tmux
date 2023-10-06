@@ -1,0 +1,7 @@
+
+alias tls="tmux ls"
+alias ta="tmux attach"
+alias tat="tmux attach -t"
+alias trs="tmux rename-session -t"
+alias tns="tmux new -s"
+

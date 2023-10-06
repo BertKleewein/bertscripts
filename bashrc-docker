@@ -1,0 +1,48 @@
+
+alias d="docker"
+alias dps="docker ps"
+alias de="docker exec"
+alias dl="docker logs"
+alias dlf="docker logs -f"
+alias dlft="docker logs --tail 200 -f"
+
+clear-docker-logs() {
+    sudo sh -c "truncate -s 0 /var/lib/docker/containers/*/*-json.log"
+}
+
+docker-restart() {
+    clear-docker-logs && docker restart $1 && docker logs -f $1
+}
+
+docker-save-log() {
+    dest=~/temp/$1.txt
+    docker logs $1 &> $dest
+    echo Log saved to $dest
+}
+
+docker-bash() {
+    docker exec -it $1 /bin/bash
+}
+
+docker-sh() {
+    docker exec -it $1 /bin/sh
+}
+
+docker-prune() {
+    sudo docker rm $(docker ps -a -f status=exited -q)
+    sudo docker rm $(docker ps -a -f status=created -q)
+    sudo docker image prune -a -f
+}
+
+export -f clear-docker-logs
+export -f docker-restart
+export -f docker-save-log
+export -f docker-bash
+export -f docker-sh
+export -f docker-prune
+
+alias dr=docker-restart
+alias dsl=docker-save-log
+alias dbash=docker-bash
+alias dsh=docker-sh
+

@@ -1,4 +1,4 @@
-set -exuo pipefail
+set -euo pipefail
 trap 'echo ERROR on line ${LINENO}' ERR
 
 if [ "$1" == "" ]; then
