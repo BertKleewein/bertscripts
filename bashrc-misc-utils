@@ -23,7 +23,7 @@ remove-trailing-whitespace() {
         shift
     done
 }
-export -f remove-trailing-whitespaces
+export -f remove-trailing-whitespace
 
 alias findempty="find . -type d -empty -print"
 alias nukeempty="find . -type d -empty -delete"

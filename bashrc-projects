@@ -49,7 +49,7 @@ makeproj() {
     fi
 }
 
-export -f makeprof
+export -f makeproj
 export -f goproj
 export -f make_activate_file
 
