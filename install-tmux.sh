@@ -8,3 +8,5 @@ sudo apt install -y \
 
 cp ${script_dir}/tmux.conf ~/.tmux.conf
 
+${script_dir}/install-bashrc-helper.sh bashrc-tmux
+
